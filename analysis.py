@@ -64,7 +64,7 @@ def compute_msd(path, spring):
     traj = gsd.hoomd.open(path, "r")
     msd = []
 
-    for frame in traj[:-2000]:
+    for frame in traj[:-500]:
         msd_value = frame.log["hpmc/external/field/Harmonic/energy_translational"][0]
         msd.append(msd_value)
 
@@ -72,9 +72,9 @@ def compute_msd(path, spring):
 
 
 def main():
-    reps = 6
+    reps = 15
     energies = []
-    n_particles = 500
+    n_particles = 256
     density = 1.04086
     # Define the integration limits
     lower_bound = 1000.0
@@ -90,7 +90,7 @@ def main():
     scaled_nodes = mid + (nodes * dx)
 
     for i in range(reps):
-        data_path = PROJECT_DIR.joinpath(f"Npart={n_particles}_moreq", f"data_{i + 1}")
+        data_path = PROJECT_DIR.joinpath(f"Npart={n_particles}", f"data_{i + 1}")
         path_list = natsorted(data_path.glob("**/trajectory.gsd"))
         result = 0.0
 
