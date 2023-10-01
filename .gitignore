@@ -1,0 +1,11 @@
+# Temporary files
+__pycache__/
+.vscode/
+# Ignore cluster files
+*.out
+*.slurm
+# This file includes the parameters that are run in parallel
+config.txt
+
+# Don't upload data unless explicitly stated
+Npart*
